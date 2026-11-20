@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 
 const Login = ({ onSwitchToSignup, onForgotPassword }) => {
     const [loginField, setLoginField] = useState({ userName: "", password: "" });
@@ -21,7 +22,7 @@ const Login = ({ onSwitchToSignup, onForgotPassword }) => {
 
         setLoading(true);
         try {
-            const response = await axios.post('http://localhost:4000/auth/login', loginField, {
+            const response = await axios.post(`${API_BASE_URL}/auth/login`, loginField, {
                 withCredentials: true
             });
 

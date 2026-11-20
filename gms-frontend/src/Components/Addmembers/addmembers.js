@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 
 const AVATAR_PRESETS = [
     "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=250&auto=format&fit=crop",
@@ -29,7 +30,7 @@ const Addmembers = () => {
 
     const fetchMembership = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/plans/get-membership', { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/plans/get-membership`, { withCredentials: true });
             if (res.data && res.data.memberships) {
                 setMembershipList(res.data.memberships);
                 if (res.data.memberships.length > 0) {
@@ -59,7 +60,7 @@ const Addmembers = () => {
 
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:4000/members/register-member', inputField, { withCredentials: true });
+            const res = await axios.post(`${API_BASE_URL}/members/register-member`, inputField, { withCredentials: true });
             toast.success(res.data.message || "Member registered successfully!");
             // Reset form
             setInputField({

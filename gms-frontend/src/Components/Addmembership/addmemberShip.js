@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { toast, ToastContainer } from 'react-toastify';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
+import { API_BASE_URL } from '../../config';
 
 const AddmemberShip = ({ handleClose }) => {
     const [inputField, setInputField] = useState({ months: "", price: "" });
@@ -14,7 +15,7 @@ const AddmemberShip = ({ handleClose }) => {
 
     const fetchMembership = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/plans/get-membership', { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/plans/get-membership`, { withCredentials: true });
             if (res.data && res.data.memberships) {
                 setMembership(res.data.memberships);
             }
@@ -36,7 +37,7 @@ const AddmemberShip = ({ handleClose }) => {
 
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:4000/plans/add-membership', inputField, { withCredentials: true });
+            const res = await axios.post(`${API_BASE_URL}/plans/add-membership`, inputField, { withCredentials: true });
             toast.success(res.data.message || "Membership plan saved!");
             setInputField({ months: "", price: "" });
             fetchMembership();

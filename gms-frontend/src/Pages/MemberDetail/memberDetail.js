@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import Switch from 'react-switch';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import PhoneIcon from '@mui/icons-material/Phone';
 import HomeIcon from '@mui/icons-material/Home';
@@ -27,7 +28,7 @@ const MemberDetail = () => {
 
     const fetchMembership = async () => {
         try {
-            const res = await axios.get('http://localhost:4000/plans/get-membership', { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/plans/get-membership`, { withCredentials: true });
             if (res.data && res.data.memberships) {
                 setMembership(res.data.memberships);
                 if (res.data.memberships.length > 0) {
@@ -42,7 +43,7 @@ const MemberDetail = () => {
     const fetchData = async () => {
         setLoading(true);
         try {
-            const res = await axios.get(`http://localhost:4000/members/member-detail/${id}`, { withCredentials: true });
+            const res = await axios.get(`${API_BASE_URL}/members/member-detail/${id}`, { withCredentials: true });
             if (res.data && res.data.member) {
                 setData(res.data.member);
                 setStatus(res.data.member.status);
@@ -58,7 +59,7 @@ const MemberDetail = () => {
     const handleSwitchBtn = async () => {
         const nextStatus = status === "Active" ? "Inactive" : "Active";
         try {
-            await axios.post(`http://localhost:4000/members/change-status/${id}`, { status: nextStatus }, { withCredentials: true });
+            await axios.post(`${API_BASE_URL}/members/change-status/${id}`, { status: nextStatus }, { withCredentials: true });
             setStatus(nextStatus);
             toast.success(`Member status updated to ${nextStatus}`);
         } catch (err) {
@@ -83,7 +84,7 @@ const MemberDetail = () => {
         }
 
         try {
-            const res = await axios.put(`http://localhost:4000/members/update-member-plan/${id}`, { membership: planMember }, { withCredentials: true });
+            const res = await axios.put(`${API_BASE_URL}/members/update-member-plan/${id}`, { membership: planMember }, { withCredentials: true });
             toast.success("Membership renewed successfully!");
             if (res.data && res.data.member) {
                 setData(res.data.member);

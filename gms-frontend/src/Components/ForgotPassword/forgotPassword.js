@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 
 const ForgotPassword = ({ handleClose }) => {
     const [step, setStep] = useState(1); // 1: Email, 2: OTP, 3: New Password
@@ -19,7 +20,7 @@ const ForgotPassword = ({ handleClose }) => {
 
         setLoader(true);
         try {
-            const res = await axios.post('http://localhost:4000/auth/reset-password/sendOtp', { email: inputField.email });
+            const res = await axios.post(`${API_BASE_URL}/auth/reset-password/sendOtp`, { email: inputField.email });
             toast.success(res.data.message || "OTP generated! Check your email or backend console.");
             setStep(2);
         } catch (err) {
@@ -39,7 +40,7 @@ const ForgotPassword = ({ handleClose }) => {
 
         setLoader(true);
         try {
-            const res = await axios.post('http://localhost:4000/auth/reset-password/checkOtp', {
+            const res = await axios.post(`${API_BASE_URL}/auth/reset-password/checkOtp`, {
                 email: inputField.email,
                 otp: inputField.otp
             });
@@ -62,7 +63,7 @@ const ForgotPassword = ({ handleClose }) => {
 
         setLoader(true);
         try {
-            const res = await axios.post('http://localhost:4000/auth/reset-password', {
+            const res = await axios.post(`${API_BASE_URL}/auth/reset-password`, {
                 email: inputField.email,
                 newPassword: inputField.newPassword
             });

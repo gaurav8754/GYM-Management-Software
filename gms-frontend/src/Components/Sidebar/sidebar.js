@@ -6,6 +6,7 @@ import LanguageIcon from '@mui/icons-material/Language';
 import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 
 const Sidebar = () => {
     const [greeting, setGreeting] = useState("");
@@ -29,7 +30,7 @@ const Sidebar = () => {
 
     const handleLogout = async () => {
         try {
-            await axios.post('http://localhost:4000/auth/logout', {}, { withCredentials: true });
+            await axios.post(`${API_BASE_URL}/auth/logout`, {}, { withCredentials: true });
         } catch (err) {
             console.warn("Logout error:", err);
         }

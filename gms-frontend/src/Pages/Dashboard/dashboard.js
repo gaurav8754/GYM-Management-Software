@@ -8,6 +8,7 @@ import FitnessCenterIcon from '@mui/icons-material/FitnessCenter';
 import AddIcon from '@mui/icons-material/Add';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
+import { API_BASE_URL } from '../../config';
 import Modal from '../../Components/Modal/modal';
 import Addmembers from '../../Components/Addmembers/addmembers';
 import AddmemberShip from '../../Components/Addmembership/addmemberShip';
@@ -35,12 +36,12 @@ const Dashboard = () => {
         setLoading(true);
         try {
             const [allRes, monthlyRes, exp3Res, exp47Res, expiredRes, inactiveRes] = await Promise.allSettled([
-                axios.get('http://localhost:4000/members/all-member?limit=1', { withCredentials: true }),
-                axios.get('http://localhost:4000/members/monthly-member', { withCredentials: true }),
-                axios.get('http://localhost:4000/members/expiring-within-3-days', { withCredentials: true }),
-                axios.get('http://localhost:4000/members/expiring-within-4-7-days', { withCredentials: true }),
-                axios.get('http://localhost:4000/members/expired-member', { withCredentials: true }),
-                axios.get('http://localhost:4000/members/inactive-member', { withCredentials: true })
+                axios.get(`${API_BASE_URL}/members/all-member?limit=1`, { withCredentials: true }),
+                axios.get(`${API_BASE_URL}/members/monthly-member`, { withCredentials: true }),
+                axios.get(`${API_BASE_URL}/members/expiring-within-3-days`, { withCredentials: true }),
+                axios.get(`${API_BASE_URL}/members/expiring-within-4-7-days`, { withCredentials: true }),
+                axios.get(`${API_BASE_URL}/members/expired-member`, { withCredentials: true }),
+                axios.get(`${API_BASE_URL}/members/inactive-member`, { withCredentials: true })
             ]);
 
             setCounts({

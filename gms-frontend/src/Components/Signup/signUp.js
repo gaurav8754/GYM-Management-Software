@@ -4,6 +4,7 @@ import Modal from '../Modal/modal';
 import ForgotPassword from '../ForgotPassword/forgotPassword';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 
 const AVATAR_OPTIONS = [
     "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=250&auto=format&fit=crop",
@@ -41,7 +42,7 @@ const SignUp = ({ onSwitchToLogin }) => {
 
         setLoading(true);
         try {
-            const res = await axios.post('http://localhost:4000/auth/register', inputField);
+            const res = await axios.post(`${API_BASE_URL}/auth/register`, inputField);
             toast.success(res.data.message || "Registration successful! You can now log in.");
             if (onSwitchToLogin) {
                 setTimeout(() => onSwitchToLogin(), 1000);

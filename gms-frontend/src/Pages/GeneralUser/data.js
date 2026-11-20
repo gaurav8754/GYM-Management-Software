@@ -1,6 +1,7 @@
 import axios from "axios";
+import { API_BASE_URL } from "../../config";
 
-const API_BASE = "http://localhost:4000/members";
+const API_BASE = `${API_BASE_URL}/members`;
 
 const getMonthlyJoined = async () => {
     try {

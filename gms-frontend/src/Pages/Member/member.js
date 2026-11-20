@@ -12,6 +12,7 @@ import AddmemberShip from '../../Components/Addmembership/addmemberShip';
 import Addmembers from '../../Components/Addmembers/addmembers';
 import axios from 'axios';
 import { ToastContainer, toast } from 'react-toastify';
+import { API_BASE_URL } from '../../config';
 
 const Member = () => {
     const [addMembership, setAddmemberShip] = useState(false);
@@ -39,7 +40,7 @@ const Member = () => {
         setLoading(true);
         try {
             const response = await axios.get(
-                `http://localhost:4000/members/all-member?skip=${currentSkip}&limit=${currentLimit}`,
+                `${API_BASE_URL}/members/all-member?skip=${currentSkip}&limit=${currentLimit}`,
                 { withCredentials: true }
             );
             if (response.data) {
@@ -91,7 +92,7 @@ const Member = () => {
         setIsSearchModeOn(true);
         try {
             const response = await axios.get(
-                `http://localhost:4000/members/searched-members?searchTerm=${encodeURIComponent(search.trim())}`,
+                `${API_BASE_URL}/members/searched-members?searchTerm=${encodeURIComponent(search.trim())}`,
                 { withCredentials: true }
             );
             if (response.data) {
