@@ -45,6 +45,7 @@ const Addmembers = () => {
 
     useEffect(() => {
         fetchMembership();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleRegisterButton = async () => {

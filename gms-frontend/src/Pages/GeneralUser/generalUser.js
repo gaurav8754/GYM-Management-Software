@@ -12,6 +12,7 @@ const GeneralUser = () => {
     useEffect(() => {
         const func = sessionStorage.getItem('func');
         functionCall(func);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const functionCall = async (func) => {

@@ -30,6 +30,7 @@ const Dashboard = () => {
 
     useEffect(() => {
         fetchDashboardStats();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const fetchDashboardStats = async () => {
@@ -99,9 +100,15 @@ const Dashboard = () => {
             <div className='mt-8'>
                 <div className='flex items-center justify-between mb-4'>
                     <h2 className='text-xl font-bold text-slate-800'>Quick Status & Alerts</h2>
-                    <span className='text-xs text-gray-500'>Click any card to view list</span>
+                    <span className='text-xs text-gray-500'>{loading ? "Updating metrics..." : "Click any card to view list"}</span>
                 </div>
 
+                {loading ? (
+                    <div className='py-16 text-center text-gray-500'>
+                        <div className='animate-spin rounded-full h-10 w-10 border-b-2 border-indigo-600 mx-auto mb-3'></div>
+                        <p className='text-sm'>Loading dashboard statistics...</p>
+                    </div>
+                ) : (
                 <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6'>
                     {/* Card 1: Total Members */}
                     <Link
@@ -198,6 +205,7 @@ const Dashboard = () => {
                         <p className='text-xs text-gray-500 mt-1'>Paused or suspended member accounts</p>
                     </Link>
                 </div>
+                )}
             </div>
 
             {/* Modals */}

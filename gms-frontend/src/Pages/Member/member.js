@@ -34,6 +34,7 @@ const Member = () => {
         if (!isSearchModeOn) {
             fetchData(skip, limit);
         }
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [skip]);
 
     const fetchData = async (currentSkip, currentLimit) => {

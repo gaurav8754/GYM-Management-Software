@@ -24,6 +24,7 @@ const MemberDetail = () => {
     useEffect(() => {
         fetchData();
         fetchMembership();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [id]);
 
     const fetchMembership = async () => {

@@ -27,6 +27,7 @@ const AddmemberShip = ({ handleClose }) => {
 
     useEffect(() => {
         fetchMembership();
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     const handleAddmembership = async () => {
