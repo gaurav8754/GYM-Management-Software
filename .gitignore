@@ -28,3 +28,6 @@ Thumbs.db
 
 # Optional test coverage
 coverage/
+
+# Local MongoDB Database files
+mongodb_data/
