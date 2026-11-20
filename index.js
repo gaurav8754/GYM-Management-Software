@@ -24,6 +24,19 @@ app.use('/auth', GymRoutes);
 app.use('/plans', MembershipRoutes);
 app.use('/members', MemberRoutes);
 
+app.get('/', (req, res) => {
+    res.status(200).json({
+        status: 'online',
+        message: '🏋️ Gym Management API is live and operational!',
+        endpoints: {
+            health: '/health',
+            auth: '/auth',
+            plans: '/plans',
+            members: '/members'
+        }
+    });
+});
+
 app.get('/health', (req, res) => {
     res.status(200).json({ status: 'ok', message: 'Gym Management API is operational', timestamp: new Date() });
 });
